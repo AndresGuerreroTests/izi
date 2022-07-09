@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
-const {} = require('./userDao.js'); 
+const {createUser} = require('./userDao.js'); 
 
 /**
  * route to post a user
@@ -11,6 +11,9 @@ router.post('/', async(req, res) =>{
    /**
     * Crear ruta
     */
+   // TODO: Validaciones de datos
+    let response = await  createUser(req.body);
+    return response?res.status(200).send(response): res.status(400).send({msg: 'impossible to add user'});
 });
 
 /**
